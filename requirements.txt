@@ -1,0 +1,32 @@
+# --- Core Web & API ---
+fastapi
+uvicorn
+pydantic
+requests
+streamlit
+python-multipart  # <--- Added for PDF uploads
+
+# --- Vector Database & RAG ---
+qdrant-client
+langchain-qdrant  # <--- Added for LangChain/Qdrant integration
+fastembed-gpu
+flashrank
+duckdb
+pandas
+
+# --- Document Processing ---
+pymupdf
+langchain-text-splitters
+
+# --- AI Models & APIs ---
+ollama
+openai
+python-dotenv
+langchain-community # <--- Added for Neo4j and extra loaders
+langchain-ollama
+torch
+
+# --- System & Utilities ---
+toml
+uuid
+neo4j

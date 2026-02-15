@@ -1,0 +1,27 @@
+# --- Virtual Environments ---
+.venv/
+env/
+venv/
+ENV/
+
+# --- Python Caches ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Databases & Large Data ---
+*.db
+*.sqlite3
+qdrant_storage/
+data/
+
+# --- Environment Secrets ---
+.env
+
+# --- OS Specific Files ---
+.DS_Store
+Thumbs.db
+
+# --- IDEs ---
+.vscode/
+.idea/
