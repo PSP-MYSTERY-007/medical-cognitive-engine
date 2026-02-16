@@ -28,28 +28,31 @@ def setup_virtual_environment():
     if not os.path.exists(VENV_DIR):
         print(f"🛠️  Creating virtual environment in {VENV_DIR}...")
         subprocess.run([sys.executable, "-m", "venv", VENV_DIR], check=True)
+
+    ask = input("🧪 Do you want to download requirements (y/n): ").lower()
+    if ask == 'y':
     
-    python_exe = get_venv_python()
+        python_exe = get_venv_python()
+            
+        if os.path.exists("requirements.txt"):
+            print("📦 Installing/Updating requirements...")
+            subprocess.run([python_exe, "-m", "pip", "uninstall", "-y", "onnxruntime", "onnxruntime-gpu"], check=True)
         
-    if os.path.exists("requirements.txt"):
-        print("📦 Installing/Updating requirements...")
-        subprocess.run([python_exe, "-m", "pip", "uninstall", "-y", "onnxruntime", "onnxruntime-gpu"], check=True)
-    
-    # 2. Install the GPU version specifically using the CUDA 12 index
-        subprocess.run([python_exe, "-m", "pip", "install", "--upgrade", "pip"], check=True)
-        subprocess.run([python_exe, "-m", "pip", "install", "-c", "constraints.txt", "-r", "requirements.txt"], check=True)
-        subprocess.run([python_exe, "-m", "pip", "uninstall", "-y", "onnxruntime", "onnxruntime-gpu"], check=True)
-#        subprocess.run([
-#            python_exe, "-m", "pip", "install", "onnxruntime-gpu", 
-#            "--extra-index-url", "https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/"
-#        ], check=True)
-        subprocess.run([python_exe, "-m", "pip", "install", "onnxruntime-gpu[cuda,cudnn]"], check=True)
-        import onnxruntime as ort
-        print(ort.get_available_providers())
-    else:
-        print("⚠️  No requirements.txt found. Skipping dependency install.")
-        import onnxruntime as ort
-        print(ort.get_available_providers())
+        # 2. Install the GPU version specifically using the CUDA 12 index
+            subprocess.run([python_exe, "-m", "pip", "install", "--upgrade", "pip"], check=True)
+            subprocess.run([python_exe, "-m", "pip", "install", "-c", "constraints.txt", "-r", "requirements.txt"], check=True)
+            subprocess.run([python_exe, "-m", "pip", "uninstall", "-y", "onnxruntime", "onnxruntime-gpu"], check=True)
+    #        subprocess.run([
+    #            python_exe, "-m", "pip", "install", "onnxruntime-gpu", 
+    #            "--extra-index-url", "https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/"
+    #        ], check=True)
+            subprocess.run([python_exe, "-m", "pip", "install", "onnxruntime-gpu[cuda,cudnn]"], check=True)
+            import onnxruntime as ort
+            print(ort.get_available_providers())
+        else:
+            print("⚠️  No requirements.txt found. Skipping dependency install.")
+            import onnxruntime as ort
+            print(ort.get_available_providers())
 
 def start_background_process(command, description, cwd=None):
     """Starts a process in the background using the venv python."""
@@ -100,6 +103,11 @@ def main():
     if confirm == 'y':
         run_blocking_command("python -m medicalchatbot.ingestion.reset", "Cleaning DB")
         run_blocking_command("python -m medicalchatbot.ingestion.ingest", "Ingesting Documents")
+
+    elif confirm == 'n':
+        justingest = input("🧪 Update database (Ingest Only)? (y/n): ").lower()
+        if justingest == 'y':
+            run_blocking_command("python -m medicalchatbot.ingestion.ingest", "Ingesting Documents")
 
     # 4. Start the Backend API
     if not is_port_open(BACKEND_PORT):
