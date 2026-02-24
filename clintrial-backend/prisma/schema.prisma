@@ -1,0 +1,196 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  DOCTOR
+  ADMIN
+  UNIVERSITY_ADMIN
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model User {
+  id             String   @id @default(uuid())
+  fullName       String
+  email          String   @unique
+  passwordHash   String
+  role           Role     @default(STUDENT)
+  universityId   String?
+  university     University? @relation(fields: [universityId], references: [id])
+
+  totalSessions  Int      @default(0)
+  overallScore   Float    @default(0)
+  streakDays     Int      @default(0)
+  rankLevel      String   @default("Bronze")
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  refreshTokens  RefreshToken[]
+  resetTokens    PasswordResetToken[]
+  sessions       UserCaseSession[]
+  diseaseProgress UserDiseaseProgress[]
+  achievements   UserAchievement[]
+
+  @@index([universityId])
+}
+
+model RefreshToken {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash   String
+  expiresAt   DateTime
+  revokedAt   DateTime?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+}
+
+model PasswordResetToken {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash   String
+  expiresAt   DateTime
+  usedAt      DateTime?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+}
+
+model University {
+  id         String   @id @default(uuid())
+  name       String
+  country    String
+  uniqueCode String   @unique
+  createdAt  DateTime @default(now())
+
+  users      User[]
+
+  @@index([country])
+}
+
+model System {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+
+  diseases  Disease[]
+}
+
+model Disease {
+  id              String     @id @default(uuid())
+  systemId        String
+  system          System     @relation(fields: [systemId], references: [id], onDelete: Cascade)
+  name            String
+  difficultyLevel Difficulty
+  metadata        Json?
+  createdAt       DateTime   @default(now())
+
+  cases           Case[]
+  progress        UserDiseaseProgress[]
+
+  @@index([systemId])
+  @@unique([systemId, name])
+}
+
+model Case {
+  id                 String     @id @default(uuid())
+  diseaseId           String
+  disease             Disease    @relation(fields: [diseaseId], references: [id], onDelete: Cascade)
+  age                Int
+  gender             String
+  chiefComplaint     String
+  hiddenDiagnosis    String
+  difficulty         Difficulty
+  structuredCaseData Json
+  createdAt          DateTime   @default(now())
+
+  sessions           UserCaseSession[]
+
+  @@index([diseaseId])
+}
+
+model UserCaseSession {
+  id              String     @id @default(uuid())
+  userId          String
+  user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  caseId          String
+  case            Case       @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
+  mode            String     @default("patient") // patient | consultant | mixed
+
+  historyScore    Float      @default(0)
+  diagnosisScore  Float      @default(0)
+  reasoningScore  Float      @default(0)
+  managementScore Float      @default(0)
+  totalScore      Float      @default(0)
+
+  durationSeconds Int        @default(0)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  messages        SessionMessage[]
+
+  @@index([userId])
+  @@index([caseId])
+}
+
+model SessionMessage {
+  id        String   @id @default(uuid())
+  sessionId String
+  session   UserCaseSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  role      String // user | assistant
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([sessionId])
+}
+
+model UserDiseaseProgress {
+  id            String   @id @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  diseaseId     String
+  disease       Disease  @relation(fields: [diseaseId], references: [id], onDelete: Cascade)
+  sessionsPlayed Int     @default(0)
+  accuracyRate   Float   @default(0)
+  lastPlayed     DateTime?
+
+  @@unique([userId, diseaseId])
+  @@index([diseaseId])
+}
+
+model Achievement {
+  id             String   @id @default(uuid())
+  title          String
+  description    String
+  badgeIcon      String
+  conditionLogic Json
+  createdAt      DateTime @default(now())
+
+  users          UserAchievement[]
+}
+
+model UserAchievement {
+  id            String   @id @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievementId String
+  achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+  unlockedAt    DateTime @default(now())
+
+  @@unique([userId, achievementId])
+}

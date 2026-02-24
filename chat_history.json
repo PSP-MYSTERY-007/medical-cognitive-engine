@@ -1,0 +1,202 @@
+{
+    "178205aa-2bab-4b44-8e06-f49268f51a2e": {
+        "messages": [
+            {
+                "content": "what is heart failure",
+                "role": "user"
+            },
+            {
+                "content": "**Heart Failure** is a chronic progressive condition where the heart is unable to pump enough blood to meet the body's needs (Guyton and Hall Textbook of Medical Physiology). It can be caused by various factors, including high blood pressure, coronary artery disease, heart valve problems, and cardiomyopathy.  \n  \nThe American Heart Association (AHA) defines heart failure as a complex clinical syndrome that results from any structural or functional impairment of ventricular filling or ejection of blood (AHA Heart Failure Guidelines). The syndrome is characterized by symptoms such as shortness of breath, fatigue, and swelling, as well as signs such as pulmonary congestion and peripheral edema.  \n  \nHeart failure can be classified into different types, including:  \n  \n* **Left-sided heart failure**: This type of heart failure affects the left side of the heart and can lead to symptoms such as shortness of breath and fatigue.  \n  \n* **Right-sided heart failure**: This type of heart failure affects the right side of the heart and can lead to symptoms such as swelling in the legs and feet.  \n  \n* **Diastolic heart failure**: This type of heart failure occurs when the heart is unable to relax and fill properly during diastole.  \n  \n* **Systolic heart failure**: This type of heart failure occurs when the heart is unable to contract and pump blood effectively during systole.  \n  \nThe diagnosis of heart failure is typically made based on a combination of clinical evaluation, laboratory tests, and imaging studies, such as echocardiography and chest X-ray. Treatment for heart failure usually involves a combination of lifestyle modifications, medications, and device therapy, such as implantable cardioverter-defibrillators (ICDs) and cardiac resynchronization therapy (CRT).\n\n---\n\u23f1\ufe0f **Latency:** 18.66s | \ud83e\udde0 **Model:** NVIDIA-70B (Cloud)\n\n",
+                "role": "assistant"
+            },
+            {
+                "content": "is heart failure the last stage of heart problem?",
+                "role": "user"
+            },
+            {
+                "content": "**Heart Failure** is not necessarily the last stage of a heart problem. While it is a serious condition, it can be managed and treated with various therapies, and some patients may experience improvement in their symptoms and quality of life (AHA Heart Failure Guidelines).  \n  \nHowever, if left untreated or poorly managed, heart failure can progress to more advanced stages, including:  \n  \n* **Advanced heart failure**: This stage is characterized by severe symptoms, such as shortness of breath at rest, fatigue, and swelling, despite optimal medical therapy.  \n  \n* **End-stage heart failure**: This stage is characterized by severe, irreversible heart damage, and patients may require heart transplantation or other advanced therapies to survive.  \n  \nThe progression of heart failure can be influenced by various factors, including the underlying cause of the condition, the effectiveness of treatment, and the patient's overall health status.  \n  \nIt's worth noting that the American College of Cardiology (ACC) and the American Heart Association (AHA) have developed a staging system for heart failure, which includes four stages:  \n  \n* **Stage A**: High risk for developing heart failure, but no symptoms or structural heart disease.  \n  \n* **Stage B**: Structural heart disease, but no symptoms.  \n  \n* **Stage C**: Symptomatic heart failure.  \n  \n* **Stage D**: Advanced heart failure with severe symptoms.  \n  \nThis staging system can help guide treatment decisions and predict outcomes for patients with heart failure.\n\n---\n\u23f1\ufe0f **Latency:** 7.7s | \ud83e\udde0 **Model:** NVIDIA-70B (Cloud)\n\n",
+                "role": "assistant"
+            }
+        ],
+        "pinned": false,
+        "timestamp": 1771859927.8268435,
+        "title": "Understanding Heart Failure"
+    },
+    "3311575d-799c-4f60-97f4-19aa68795545": {
+        "messages": [],
+        "pinned": false,
+        "timestamp": 0,
+        "title": "New Consultation"
+    },
+    "37d4596b-2ca9-4ff3-b471-ef12c312812a": {
+        "messages": [],
+        "pinned": false,
+        "timestamp": 0,
+        "title": "New Consultation"
+    },
+    "ad3e2f27-dd9a-49c0-b102-59b54abd7dac": {
+        "messages": [
+            {
+                "content": "hello",
+                "role": "user"
+            },
+            {
+                "content": "Error: No response from engine.\n\n",
+                "role": "assistant"
+            },
+            {
+                "content": "im having stomach ache",
+                "role": "user"
+            },
+            {
+                "content": "Engine error (500): model 'llama3.2:3b' not found (status code: 404)\n\n",
+                "role": "assistant"
+            }
+        ],
+        "pinned": false,
+        "timestamp": 1771831650.6606464,
+        "title": "hello"
+    },
+    "c2677502-45fe-4b38-a9f7-1163664d32d2": {
+        "backend_session_id": "40db5853-5109-40c0-8569-ded70f4e9a03",
+        "case": {
+            "age": 58,
+            "chiefComplaint": "Seed case for Heart Failure",
+            "difficulty": "MEDIUM",
+            "diseaseId": "71180495-08bc-411f-9eaf-3a5565e7942f",
+            "gender": "Male",
+            "id": "3ef71f69-c2c7-42b9-9973-97b0f111b87b",
+            "structuredCaseData": {
+                "chiefComplaint": "Seed case for Heart Failure",
+                "exam": {
+                    "findings": [],
+                    "vitals": {
+                        "bp": "140/90",
+                        "hr": 110,
+                        "rr": 22
+                    }
+                },
+                "history": {
+                    "onset": "2 days",
+                    "symptoms": [
+                        "shortness of breath"
+                    ]
+                },
+                "investigations": {
+                    "ecg": "",
+                    "labs": {}
+                },
+                "managementKeyPoints": []
+            }
+        },
+        "messages": [
+            {
+                "content": "what symptoms and possible causes",
+                "role": "user"
+            },
+            {
+                "content": "**Type 2 Diabetes** symptoms and possible causes:  \n  \n**Common Symptoms:**  \n  \n\u2022 Increased thirst and hunger  \n  \n\u2022 Fatigue  \n  \n\u2022 Blurred vision  \n  \n\u2022 Cuts or wounds that are slow to heal  \n  \n\u2022 Tingling or numbness in the hands and feet  \n  \n\u2022 Recurring skin, gum, or bladder infections  \n  \n**Possible Causes:**  \n  \n\u2022 **Insulin Resistance**: The body's cells become less responsive to insulin, making it harder for glucose to enter the cells.  \n  \n\u2022 **Pancreatic Beta-Cell Dysfunction**: The pancreas is unable to produce enough insulin to meet the body's needs.  \n  \n\u2022 **Genetics**: Family history and genetic predisposition can play a role in the development of Type 2 Diabetes.  \n  \n\u2022 **Obesity**: Being overweight or obese can increase the risk of developing Type 2 Diabetes.  \n  \n\u2022 **Physical Inactivity**: A sedentary lifestyle can contribute to the development of Type 2 Diabetes.  \n  \n\u2022 **Age**: The risk of developing Type 2 Diabetes increases with age, especially after the age of 45.  \n  \n\u2022 **Ethnicity**: Certain ethnic groups, such as African Americans, Hispanics/Latinos, and American Indians, are at a higher risk of developing Type 2 Diabetes.  \n  \n**Other Possible Causes:**  \n  \n\u2022 **Medications**: Certain medications, such as steroids and certain psychiatric medications, can increase the risk of developing Type 2 Diabetes.  \n  \n\u2022 **Sleep Apnea**: Sleep apnea has been linked to an increased risk of developing Type 2 Diabetes.  \n  \n\u2022 **Polycystic Ovary Syndrome (PCOS)**: Women with PCOS are at a higher risk of developing Type 2 Diabetes.  \n  \n(Sources: American Diabetes Association. Standards of Medical Care in Diabetes. Diabetes Care. 2022; 45(1): S1-S252. National Institute of Diabetes and Digestive and Kidney Diseases. Type 2 Diabetes.\n\n---\n\u23f1\ufe0f **Latency:** 24.43s | \ud83e\udde0 **Model:** NVIDIA-70B (Cloud)\n\n",
+                "role": "assistant"
+            },
+            {
+                "content": "treatments",
+                "role": "user"
+            },
+            {
+                "content": "**Type 2 Diabetes Treatment**   \n  \n**Lifestyle Modifications:**  \n  \n\u2022 **Dietary Changes**: Focus on whole, unprocessed foods like vegetables, fruits, whole grains, lean proteins, and healthy fats. (American Diabetes Association. Standards of Medical Care in Diabetes. Diabetes Care. 2022; 45(1): S1-S252)  \n  \n\u2022 **Physical Activity**: Aim for at least 150 minutes of moderate-intensity aerobic exercise, or 75 minutes of vigorous-intensity aerobic exercise, or a combination of both, per week. (American Diabetes Association. Standards of Medical Care in Diabetes. Diabetes Care. 2022; 45(1): S1-S252)  \n  \n\u2022 **Weight Management**: If overweight or obese, aim for a weight loss of 5-10% of initial body weight. (National Institute of Diabetes and Digestive and Kidney Diseases. Type 2 Diabetes)  \n  \n**Pharmacological Interventions:**  \n  \n\u2022 **Metformin**: First-line treatment for Type 2 Diabetes, unless contraindicated or not tolerated. (American Diabetes Association. Standards of Medical Care in Diabetes. Diabetes Care. 2022; 45(1): S1-S252)  \n  \n\t+ Initial dose: 500-1000 mg orally once daily  \n  \n\t+ Titrate dose every 1-2 weeks to a maximum of 2000-2500 mg orally twice daily  \n  \n\u2022 **Other Oral Agents**: Consider adding or switching to other oral agents, such as sulfonylureas, thiazolidinediones, or dipeptidyl peptidase-4 inhibitors, based on individual patient needs and response. (American Diabetes Association. Standards of Medical Care in Diabetes. Diabetes Care. 2022; 45(1): S1-S252)  \n  \n\u2022 **Injectable Agents**: Consider adding or switching to injectable agents, such as glucagon-like peptide-1 receptor agonists or insulin, based on individual patient needs and response. (American Diabetes Association. Standards of Medical Care in Diabetes. Diabetes Care. 2022; 45(1): S1-S252)  \n  \n**Monitoring and Follow-up:**  \n  \n\u2022 **Hemoglobin A1c (HbA1c)**: Monitor every 3-6 months to assess glycemic control. (American Diabetes Association. Standards of Medical Care in Diabetes. Diabetes Care. 2022; 45(1): S1-S252)  \n  \n\u2022 **Blood Pressure and Lipid Profiles**: Monitor regularly to assess cardiovascular risk. (American Diabetes Association. Standards of Medical Care in Diabetes. Diabetes Care. 2022; 45(1): S1-S252)  \n  \n\u2022 **Kidney Function**: Monitor regularly to assess kidney function and detect potential kidney damage. (National Institute of Diabetes and Digestive and Kidney Diseases. Type 2 Diabetes)  \n  \nACTION REQUIRED: Verify kidney function (eGFR) and liver function tests (LFTs) before initiating or adjusting medications.\n\n---\n\u23f1\ufe0f **Latency:** 15.04s | \ud83e\udde0 **Model:** NVIDIA-70B (Cloud)\n\n",
+                "role": "assistant"
+            },
+            {
+                "content": "possible complications",
+                "role": "user"
+            },
+            {
+                "content": "**Heart Failure Complications**  \n  \nBased on the provided context, potential complications of **Heart Failure** in a 58-year-old male patient may include:  \n  \n\u2022 **Cardiac Arrhythmias**: Atrial fibrillation, ventricular tachycardia, and ventricular fibrillation (Source: Harrison's Principles of Internal Medicine)  \n  \n\u2022 **Pulmonary Edema**: Fluid accumulation in the lungs, leading to respiratory distress (Source: Braunwald's Heart Disease)  \n  \n\u2022 **Cardiogenic Shock**: Severe reduction in cardiac output, resulting in inadequate tissue perfusion (Source: Critical Care Medicine)  \n  \n\u2022 **Thromboembolism**: Blood clots forming in the heart, which can lead to stroke or pulmonary embolism (Source: American Heart Association)  \n  \n\u2022 **Sudden Cardiac Death**: Unexpected death due to cardiac arrest (Source: European Heart Journal)  \n  \n\u2022 **Chronic Kidney Disease**: Reduced kidney function due to decreased cardiac output (Source: National Kidney Foundation)  \n  \n\u2022 **Anemia**: Decreased red blood cell count, which can worsen heart failure symptoms (Source: American Journal of Hematology)  \n  \nACTION REQUIRED: Verify eGFR and LFTs before proceeding to assess the patient's kidney and liver function.  \n  \nPlease note that these complications are not exhaustive, and further evaluation is necessary to determine the patient's specific risk factors and underlying conditions.\n\n---\n\u23f1\ufe0f **Latency:** 14.83s | \ud83e\udde0 **Model:** NVIDIA-70B (Cloud)\n\n",
+                "role": "assistant"
+            }
+        ],
+        "pinned": false,
+        "timestamp": 1771930998.0737753,
+        "title": "Symptoms of Type 2 Diabetes"
+    },
+    "ca2d2527-4c0e-49d5-a558-fd806251e338": {
+        "messages": [
+            {
+                "content": " GRADES OF RECOMMENDATIONS AND LEVELS OF EVIDENCE ",
+                "role": "user"
+            },
+            {
+                "content": "**Grades of Recommendations and Levels of Evidence**  \n  \nThe **Grades of Recommendation Assessment, Development and Evaluations (GRADE)** system is a widely used framework for evaluating the quality of evidence and making recommendations in clinical practice guidelines (CPGs). The GRADE system assesses the quality of evidence across four domains: risk of bias, inconsistency, indirectness, and imprecision.  \n  \n**Levels of Evidence:**  \n  \n* **High**: Further research is very unlikely to change our confidence in the estimate of effect.  \n  \n* **Moderate**: Further research is likely to have an important impact on our confidence in the estimate of effect and may change the estimate.  \n  \n* **Low**: Further research is very likely to have an important impact on our confidence in the estimate of effect and is likely to change the estimate.  \n  \n* **Very Low**: Any estimate of effect is very uncertain.  \n  \n**Grades of Recommendations:**  \n  \n* **Strong**: The desirable effects of an intervention clearly outweigh the undesirable effects, or vice versa.  \n  \n* **Weak**: The trade-offs are less certain, either because of low-quality evidence or because the benefits and harms are closely balanced.  \n  \n**Factors Influencing Grades of Recommendations:**  \n  \n* **Quality of evidence**: The higher the quality of evidence, the more likely a strong recommendation.  \n  \n* **Balance between desirable and undesirable consequences**: A strong recommendation is more likely when the benefits clearly outweigh the harms.  \n  \n* **Values and preferences**: Recommendations may vary depending on individual patient values and preferences.  \n  \n* **Resource use**: Recommendations may consider the cost-effectiveness of interventions.  \n  \n(Source: GRADE Handbook)\n\n---\n\u23f1\ufe0f **Latency:** 30.74s | \ud83e\udde0 **Model:** NVIDIA-70B (Cloud)\n\n",
+                "role": "assistant"
+            },
+            {
+                "content": "The goals of management of HF include:",
+                "role": "user"
+            },
+            {
+                "content": "**Heart Failure (HF) Management Goals**  \n  \nThe primary objectives of managing **Heart Failure (HF)** include (Source: 2022 AHA/ACC/HFSA Focused Update on Heart Failure):  \n  \n\u2022 **Relieve symptoms**: Improve exercise tolerance, reduce dyspnea, and alleviate fatigue.  \n  \n\u2022 **Slow disease progression**: Reduce morbidity and mortality by addressing underlying causes and comorbidities.  \n  \n\u2022 **Improve quality of life**: Enhance functional capacity, reduce hospitalizations, and promote patient well-being.  \n  \n\u2022 **Prolong survival**: Optimize medical therapy, device therapy, and lifestyle modifications to improve long-term outcomes.  \n  \n**Key Principles:**  \n  \n* **Guideline-directed medical therapy (GDMT)**: Use evidence-based medications, such as ACE inhibitors or ARBs, beta-blockers, and mineralocorticoid receptor antagonists, to reduce morbidity and mortality.  \n  \n* **Device therapy**: Consider implantable cardioverter-defibrillators (ICDs) and cardiac resynchronization therapy (CRT) in eligible patients.  \n  \n* **Lifestyle modifications**: Encourage patients to adopt a healthy diet, engage in regular physical activity, and manage stress.  \n  \n**Monitoring and Follow-up:**  \n  \n* Regularly assess symptoms, functional capacity, and laboratory values (e.g., BNP, electrolytes, and renal function).  \n  \n* Adjust medications and device settings as needed to optimize therapy.  \n  \n(Source: 2022 AHA/ACC/HFSA Focused Update on Heart Failure)\n\n---\n\u23f1\ufe0f **Latency:** 16.36s | \ud83e\udde0 **Model:** NVIDIA-70B (Cloud)\n\n",
+                "role": "assistant"
+            }
+        ],
+        "pinned": false,
+        "timestamp": 1771837124.8095417,
+        "title": "Grading Medical Recommendations"
+    },
+    "d1c6a638-4482-4f81-8bb8-37b20b8b0bef": {
+        "messages": [
+            {
+                "content": "symptoms",
+                "role": "user"
+            },
+            {
+                "content": "**Heart Failure Symptoms**  \n  \nBased on the provided context, common symptoms of **Heart Failure** in a 58-year-old male may include:  \n  \n\u2022 Shortness of breath (dyspnea) or difficulty breathing  \n  \n\u2022 Fatigue or weakness  \n  \n\u2022 Swelling in the legs, ankles, or feet (edema)  \n  \n\u2022 Rapid or irregular heartbeat (palpitations)  \n  \n\u2022 Coughing up pink, frothy mucus  \n  \n\u2022 Chest pain or discomfort  \n  \n\u2022 Dizziness or lightheadedness  \n  \n\u2022 Nausea or vomiting  \n  \n\u2022 Reduced ability to exercise or perform physical activities  \n  \nThese symptoms can be further categorized into two main types:  \n  \n* **Left-sided heart failure symptoms**:  \n  \n\t+ Shortness of breath  \n  \n\t+ Fatigue  \n  \n\t+ Coughing up pink, frothy mucus  \n  \n* **Right-sided heart failure symptoms**:  \n  \n\t+ Swelling in the legs, ankles, or feet  \n  \n\t+ Weight gain  \n  \n\t+ Abdominal discomfort or swelling  \n  \nPlease note that these symptoms can vary in severity and may not be present in all cases of heart failure. (Source: Heart Failure: A Companion to Braunwald's Heart Disease)\n\n---\n\u23f1\ufe0f **Latency:** 13.61s | \ud83e\udde0 **Model:** NVIDIA-70B (Cloud)\n\n",
+                "role": "assistant"
+            }
+        ],
+        "pinned": false,
+        "timestamp": 1771916907.444924,
+        "title": "Common Heart Failure Symptoms"
+    },
+    "e23ef681-722d-4c80-bbd9-b9656d6ac25d": {
+        "messages": [],
+        "pinned": false,
+        "timestamp": 0,
+        "title": "New Consultation"
+    },
+    "eb25a2ff-baaf-48b2-966f-00612ec3a2fd": {
+        "messages": [],
+        "pinned": false,
+        "timestamp": 0,
+        "title": "New Consultation"
+    },
+    "eeb12049-0fff-4b6d-968b-12f970bc15e5": {
+        "messages": [
+            {
+                "content": "what symptoms",
+                "role": "user"
+            },
+            {
+                "content": "**Type 2 Diabetes** symptoms can be subtle and may develop gradually. Common symptoms include (Source: Harrison's Principles of Internal Medicine):  \n  \n\u2022 **Increased thirst and hunger**: As the body is unable to effectively use insulin, glucose builds up in the blood, leading to increased thirst and hunger.  \n  \n\u2022 **Frequent urination**: With high blood glucose levels, the kidneys try to flush out excess glucose by producing more urine, leading to frequent urination.  \n  \n\u2022 **Fatigue**: High blood glucose levels can cause fatigue, as the body's cells are not receiving the energy they need.  \n  \n\u2022 **Blurred vision**: High blood glucose levels can cause the lens in the eye to swell, leading to blurred vision.  \n  \n\u2022 **Slow healing of cuts and wounds**: High blood glucose levels can affect the body's ability to heal wounds.  \n  \n\u2022 **Tingling or numbness in the hands and feet**: High blood glucose levels can damage the nerves, leading to tingling or numbness in the hands and feet.  \n  \nIt is essential to note that some people with **Type 2 Diabetes** may not experience any noticeable symptoms in the early stages of the disease.\n\n---\n\u23f1\ufe0f **Latency:** 28.91s | \ud83e\udde0 **Model:** NVIDIA-70B (Cloud)\n\n",
+                "role": "assistant"
+            }
+        ],
+        "pinned": false,
+        "timestamp": 1771905276.958672,
+        "title": "Symptoms of Type 2 Diabetes"
+    },
+    "f9d9e1f8-18ce-4454-9cc6-79ea0b17423d": {
+        "messages": [
+            {
+                "content": " Routes of Drug Administration",
+                "role": "user"
+            },
+            {
+                "content": "Engine error (500): Unexpected Response: 404 (Not Found)\nRaw response content:\nb'{\"status\":{\"error\":\"Not found: Collection `textbook_docs` doesn\\'t exist!\"},\"time\":0.000022198}'\n\n",
+                "role": "assistant"
+            }
+        ],
+        "pinned": false,
+        "timestamp": 1771832625.6325614,
+        "title": "Error in Drug Route"
+    }
+}

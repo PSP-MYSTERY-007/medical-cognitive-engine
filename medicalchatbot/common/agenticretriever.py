@@ -9,6 +9,7 @@ class MedicalAgentRetriever:
         self.dense_model = dense_model
         self.sparse_model = sparse_model
         self.client = get_qdrant_client("cpg_docs") # Get base client
+        get_qdrant_client("textbook_docs")
         self.ranker = Ranker()
         self.kg_engine = MedicalGraphEngine()
 
@@ -51,15 +52,30 @@ class MedicalAgentRetriever:
         )
 
         # Search
-        response = self.client.query_points(
-            collection_name=collection_name,
-            prefetch=[
-                models.Prefetch(query=query_dense, using="dense", limit=limit),
-                models.Prefetch(query=query_sparse, using="sparse", limit=limit),
-            ],
-            query=models.FusionQuery(fusion=models.Fusion.RRF),
-            limit=limit * 2
-        )
+        try:
+            response = self.client.query_points(
+                collection_name=collection_name,
+                prefetch=[
+                    models.Prefetch(query=query_dense, using="dense", limit=limit),
+                    models.Prefetch(query=query_sparse, using="sparse", limit=limit),
+                ],
+                query=models.FusionQuery(fusion=models.Fusion.RRF),
+                limit=limit * 2
+            )
+        except Exception as e:
+            if "doesn't exist" in str(e):
+                get_qdrant_client(collection_name)
+                response = self.client.query_points(
+                    collection_name=collection_name,
+                    prefetch=[
+                        models.Prefetch(query=query_dense, using="dense", limit=limit),
+                        models.Prefetch(query=query_sparse, using="sparse", limit=limit),
+                    ],
+                    query=models.FusionQuery(fusion=models.Fusion.RRF),
+                    limit=limit * 2
+                )
+            else:
+                raise
         return response.points
 
     def run(self, query: str, top_k: int = 3):
@@ -82,6 +98,9 @@ class MedicalAgentRetriever:
                     "text": p.payload.get("document", ""),
                     "metadata": p.payload
                 })
+
+        if not all_passages:
+            return f"🛡️ PHARMACOPOEIA RULES:\n{kg_context}\n\nNo indexed CPG/Textbook passages found yet. Run ingestion to add documents."
 
         # 3. Reranking
         rerank_req = RerankRequest(query=query, passages=all_passages)

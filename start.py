@@ -3,11 +3,15 @@ import time
 import socket
 import sys
 import os
+import webbrowser
 
 # --- SETTINGS ---
-BACKEND_PORT = 8000
+ASSISTANT_PORT = 8000
+CLINTRIAL_BACKEND_PORT = 3000
+CLINTRIAL_BACKEND_DIR = "clintrial-backend"
 QDRANT_PORT = 6333
 OLLAMA_PORT = 11434
+REQUIRED_OLLAMA_MODEL = "llama3.2:3b"
 FRONTEND_DIR = "frontend"
 FRONTEND_FILE = "frontend_app.py"
 VENV_DIR = ".venv"
@@ -74,6 +78,24 @@ def run_blocking_command(command, description, cwd=None):
         print(f"❌ Error during: {description}")
         sys.exit(1)
 
+def ensure_ollama_model(model_name: str):
+    """Ensures required Ollama model exists locally, pulling it if missing."""
+    try:
+        result = subprocess.run(
+            "ollama list",
+            shell=True,
+            check=True,
+            capture_output=True,
+            text=True
+        )
+        if model_name not in result.stdout:
+            run_blocking_command(f"ollama pull {model_name}", f"Downloading Ollama model: {model_name}")
+        else:
+            print(f"✅ Ollama model '{model_name}' is ready.")
+    except subprocess.CalledProcessError:
+        print("⚠️  Could not verify Ollama models. Attempting to pull required model anyway...")
+        run_blocking_command(f"ollama pull {model_name}", f"Downloading Ollama model: {model_name}")
+
 def main():
     print("🏥 --- MEDICAL COGNITIVE ENGINE: ALL-IN-ONE BOOT --- 🏥\n")
 
@@ -98,6 +120,8 @@ def main():
     else:
         print("✅ Ollama is already online.")
 
+    ensure_ollama_model(REQUIRED_OLLAMA_MODEL)
+
     # 3. Optional Maintenance
     confirm = input("🧪 Run Database Refresh (Reset + Ingest)? (y/n): ").lower()
     if confirm == 'y':
@@ -109,18 +133,34 @@ def main():
         if justingest == 'y':
             run_blocking_command("python -m medicalchatbot.ingestion.ingest", "Ingesting Documents")
 
-    # 4. Start the Backend API
-    if not is_port_open(BACKEND_PORT):
+    # 4. Start ClinTrial Node backend (frontend /systems, /cases, /sessions API)
+    if not is_port_open(CLINTRIAL_BACKEND_PORT):
+        if os.path.isdir(CLINTRIAL_BACKEND_DIR):
+            start_background_process("npm run start", "Launching ClinTrial Backend (Node.js)", cwd=CLINTRIAL_BACKEND_DIR)
+            print("⏳ Waiting for ClinTrial backend to initialize...")
+            attempts = 0
+            while not is_port_open(CLINTRIAL_BACKEND_PORT) and attempts < 15:
+                time.sleep(2)
+                attempts += 1
+            if not is_port_open(CLINTRIAL_BACKEND_PORT):
+                print("⚠️  ClinTrial backend did not open port 3000. Run manually: cd clintrial-backend && npm run start")
+        else:
+            print("⚠️  'clintrial-backend' folder not found. Skipping Node backend startup.")
+    else:
+        print("✅ ClinTrial backend is already online.")
+
+    # 5. Start Python assistant backend (FastAPI)
+    if not is_port_open(ASSISTANT_PORT):
         start_background_process("python main.py", "Launching FastAPI Backend")
-        print("⏳ Waiting for Backend to initialize...")
+        print("⏳ Waiting for FastAPI backend to initialize...")
         attempts = 0
-        while not is_port_open(BACKEND_PORT) and attempts < 15:
+        while not is_port_open(ASSISTANT_PORT) and attempts < 15:
             time.sleep(2)
             attempts += 1
     else:
         print("⚠️  Backend port 8000 is already busy!")
     
-    # 5. Start Frontend
+    # 6. Start Frontend
     print("🎨 Launching Streamlit UI...")
     
     # Use the absolute path or root-relative path for the venv python
@@ -130,7 +170,10 @@ def main():
     frontend_path = os.path.join(FRONTEND_DIR, FRONTEND_FILE)
     
     # We run from ROOT, so we don't pass cwd=FRONTEND_DIR
-    frontend_cmd = f"{python_exe} -m streamlit run {frontend_path}"
+    frontend_cmd = f"{python_exe} -m streamlit run {frontend_path} --browser.gatherUsageStats false"
+
+    # Open Streamlit URL explicitly (useful on systems where auto-open is blocked)
+    webbrowser.open("http://localhost:8501")
     
     # This ensures the script sees the .venv and the frontend file simultaneously
     run_blocking_command(frontend_cmd, "Opening Browser")

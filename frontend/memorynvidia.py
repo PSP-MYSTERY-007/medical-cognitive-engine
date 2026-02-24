@@ -46,6 +46,21 @@ class MedicalMemory:
         }
         self._save_sessions()
 
+    def update_session_meta(self, session_id, **kwargs):
+        if session_id not in self.sessions:
+            self.create_new_session(session_id)
+        self.sessions[session_id].update(kwargs)
+        self._save_sessions()
+
+    def delete_session(self, session_id):
+        if session_id in self.sessions:
+            del self.sessions[session_id]
+            self._save_sessions()
+
+    def clear_all_sessions(self):
+        self.sessions = {}
+        self._save_sessions()
+
     def toggle_pin(self, session_id):
         if session_id in self.sessions:
             self.sessions[session_id]["pinned"] = not self.sessions[session_id].get("pinned", False)

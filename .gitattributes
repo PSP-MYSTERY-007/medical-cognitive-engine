@@ -1,0 +1,2 @@
+medicalchatbot/knowledge_graph/kg.csv filter=lfs diff=lfs merge=lfs -text
+medicalchatbot/knowledge_graph/knowledge_graph_data.zip filter=lfs diff=lfs merge=lfs -text
