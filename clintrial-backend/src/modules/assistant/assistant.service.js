@@ -9,11 +9,33 @@ export async function callAssistant({ sessionId, question, historySummary, force
     force_local: !!forceLocal
   };
 
-  const { statusCode, body: resBody } = await undiciRequest(url, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(body)
-  });
+  let statusCode;
+  let resBody;
+  try {
+    ({ statusCode, body: resBody } = await undiciRequest(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(body)
+    }));
+  } catch (err) {
+    const connectivityCodes = new Set([
+      'ECONNREFUSED',
+      'ECONNRESET',
+      'ENOTFOUND',
+      'EHOSTUNREACH',
+      'ETIMEDOUT',
+      'UND_ERR_CONNECT_TIMEOUT'
+    ]);
+    if (connectivityCodes.has(err?.code)) {
+      throw Object.assign(
+        new Error(
+          `Assistant service unavailable (${env.ASSISTANT_BASE_URL}). Start the Python backend on port 8000 or update ASSISTANT_BASE_URL.`
+        ),
+        { statusCode: 503 }
+      );
+    }
+    throw err;
+  }
 
   const text = await resBody.text();
   let json;

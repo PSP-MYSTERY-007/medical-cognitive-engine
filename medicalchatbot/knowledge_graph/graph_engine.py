@@ -1,16 +1,20 @@
 import duckdb
 import re
+import os
 
 class MedicalGraphEngine:
     def __init__(self):
         self.db_path = 'medicalchatbot/knowledge_graph/data/kg_index.db'
-        self._con = duckdb.connect(self.db_path, read_only=True)
+        self._con = duckdb.connect(self.db_path, read_only=True) if os.path.exists(self.db_path) else None
         # Pre-compile a list of drugs for faster regex matching
         self.drug_list = ["Metformin", "Warfarin", "Lisinopril", "Aspirin", "Apixaban"] 
         self.pattern = re.compile(r'\b(' + '|'.join(self.drug_list) + r')\b', re.IGNORECASE)
 
     def get_pharmacopoeia_alerts(self, text):
         """Checks ANY text (query or answer) for drug interactions."""
+        if self._con is None:
+            return []
+
         found = list(set(self.pattern.findall(text))) # Find unique drugs
         
         if not found: 
