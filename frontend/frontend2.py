@@ -32,19 +32,74 @@ st.markdown("""
         color: white;
     }
     
-    /* Sidebar Style (Green Gradient) */
+    /* Sidebar Style */
     section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #065f46, #064e3b);
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        background: linear-gradient(180deg, #0b3f33, #0f172a);
+        border-right: 1px solid rgba(148, 163, 184, 0.2);
     }
 
-    /* User Profile Card (Purple Highlight) */
+    section[data-testid="stSidebar"] > div {
+        background:
+            radial-gradient(circle at 100% 0%, rgba(14, 165, 233, 0.22), transparent 42%),
+            radial-gradient(circle at 0% 20%, rgba(20, 184, 166, 0.2), transparent 42%);
+    }
+
+    section[data-testid="stSidebar"] .block-container {
+        padding-top: 1rem;
+    }
+
+    .sidebar-brand {
+        background: rgba(255, 255, 255, 0.07);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 14px;
+        padding: 12px 14px;
+        margin-bottom: 14px;
+        box-shadow: 0 10px 24px rgba(2, 6, 23, 0.34);
+    }
+
+    .sidebar-brand-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #e0f2fe;
+        letter-spacing: 0.25px;
+    }
+
+    .sidebar-brand-sub {
+        margin-top: 3px;
+        font-size: 0.8rem;
+        color: #99f6e4;
+    }
+
+    section[data-testid="stSidebar"] .stButton > button {
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        color: #f8fafc;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+        transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    section[data-testid="stSidebar"] .stButton > button:hover {
+        border-color: rgba(14, 165, 233, 0.55);
+        box-shadow: 0 10px 18px rgba(2, 6, 23, 0.35);
+        transform: translateY(-1px);
+    }
+
+    section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
+        background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+        border-color: rgba(255, 255, 255, 0.25);
+        font-weight: 700;
+    }
+
+    /* User Profile Card */
     .user-profile {
-        background: linear-gradient(135deg, #6366f1, #a855f7);
+        background: linear-gradient(135deg, rgba(20, 184, 166, 0.85), rgba(37, 99, 235, 0.85));
         padding: 15px;
         border-radius: 12px;
         margin-bottom: 20px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 18px rgba(2, 6, 23, 0.34);
     }
 
     /* Glass Cards */
@@ -109,6 +164,97 @@ st.markdown("""
     
     .ama-button:hover {
         transform: scale(1.1);
+    }
+
+    .osce-hero {
+        background: linear-gradient(135deg, rgba(14, 165, 233, 0.24), rgba(20, 184, 166, 0.2));
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        border-radius: 16px;
+        padding: 22px;
+        margin-top: 20px;
+        margin-bottom: 16px;
+        box-shadow: 0 12px 28px rgba(2, 6, 23, 0.3);
+    }
+
+    .osce-hero h1 {
+        margin: 0;
+        font-size: 1.85rem;
+        color: #e2e8f0;
+    }
+
+    .osce-hero p {
+        margin: 6px 0 0 0;
+        color: #cbd5e1;
+    }
+
+    .osce-metric-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 14px;
+        padding: 14px 16px;
+        min-height: 108px;
+        box-shadow: 0 8px 20px rgba(2, 6, 23, 0.28);
+        backdrop-filter: blur(10px);
+    }
+
+    .osce-metric-label {
+        color: #94a3b8;
+        font-size: 0.85rem;
+    }
+
+    .osce-metric-value {
+        margin-top: 6px;
+        color: #f8fafc;
+        font-size: 1.68rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+    .osce-metric-delta {
+        margin-top: 8px;
+        color: #5eead4;
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .osce-section-title {
+        margin: 2px 0 12px 0;
+        color: #e2e8f0;
+        letter-spacing: 0.2px;
+    }
+
+    .osce-chart-shell {
+        margin-top: 14px;
+        border-top: 1px solid rgba(148, 163, 184, 0.2);
+        padding-top: 14px;
+    }
+
+    .osce-system-tile {
+        text-align: center;
+        background: linear-gradient(135deg, rgba(14, 165, 233, 0.9), rgba(37, 99, 235, 0.9));
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 14px;
+        padding: 16px 12px;
+        margin-bottom: 8px;
+        box-shadow: 0 10px 20px rgba(2, 6, 23, 0.3);
+    }
+
+    .osce-system-icon {
+        font-size: 38px;
+        margin-bottom: 4px;
+    }
+
+    .osce-system-name {
+        color: #f8fafc;
+        font-size: 1.08rem;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .osce-system-sub {
+        color: #dbeafe;
+        font-size: 0.82rem;
+        margin-top: 4px;
     }
 
 </style>
@@ -242,7 +388,13 @@ def render_session_row(sid, data):
 # SIDEBAR
 # ==============================
 with st.sidebar:
-    st.markdown("## ClinTrial AI")
+    st.markdown(
+        """<div class="sidebar-brand">
+                <div class="sidebar-brand-title">🫀 ClinTrial AI</div>
+                <div class="sidebar-brand-sub">Medical OSCE Command Center</div>
+            </div>""",
+        unsafe_allow_html=True
+    )
     st.markdown(f"""<div class="user-profile">
                 <small>User Profile</small><br>
                 <b>Dr. Praveen</b><br>
@@ -397,27 +549,41 @@ def render_osce():
     elif st.session_state.selected_system:
         render_system_detail()
     else:
-        st.markdown('<div class="glass" style="margin-top:40px;"><h1>Welcome back, Dr. Praveen</h1><p>Continue your OSCE training journey</p></div>', unsafe_allow_html=True)
+        st.markdown('''
+            <div class="osce-hero">
+                <h1>Welcome back, Dr. Praveen</h1>
+                <p>Continue your OSCE training journey with focused practice and real-time feedback.</p>
+            </div>
+        ''', unsafe_allow_html=True)
         
         # Original Metrics
         c1, c2, c3, c4 = st.columns(4)
         m_list = [("Total Sessions", "160", "12%"), ("Clinical Score", "74%", "5%"), ("Current Rank", "Registrar", "Lvl 3"), ("Current Streak", "7 Days", "3%")]
         for col, (lab, val, det) in zip([c1, c2, c3, c4], m_list):
-            col.metric(lab, val, det)
+            with col:
+                st.markdown(f'''
+                    <div class="osce-metric-card">
+                        <div class="osce-metric-label">{lab}</div>
+                        <div class="osce-metric-value">{val}</div>
+                        <div class="osce-metric-delta">↑ {det}</div>
+                    </div>
+                ''', unsafe_allow_html=True)
 
         # Original Competency Overview
         st.markdown('<div class="glass" style="margin-top:20px;">', unsafe_allow_html=True)
-        st.subheader("Clinical Competency Overview")
+        st.markdown('<h3 class="osce-section-title">Clinical Competency Overview</h3>', unsafe_allow_html=True)
         gauges = [("Overall Competency", 74, "#14b8a6"), ("History Taking", 82, "#10b981"), ("Diagnostic Accuracy", 68, "#06b6d4"), ("Clinical Reasoning", 71, "#0ea5e9"), ("Management", 76, "#0891b2")]
         g_cols = st.columns([1.5, 1, 1, 1, 1])
         for col, (lab, val, colr) in zip(g_cols, gauges):
             with col: st.markdown(render_circle_progress(lab, val, colr), unsafe_allow_html=True)
-        
+
+        st.markdown('<div class="osce-chart-shell">', unsafe_allow_html=True)
         st.line_chart(pd.DataFrame({"Score": [42, 55, 62, 72, 82]}), color="#14b8a6")
+        st.markdown('</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
         # System Grid
-        st.subheader("Select Medical System")
+        st.markdown('<h3 class="osce-section-title">Select Medical System</h3>', unsafe_allow_html=True)
         systems = {"Cardiology": "❤️", "Respiratory": "🫁", "Neurology": "🧠", "Gastro": "🩺", "Orthopedics": "🦴", "Dermatology": "🧴"}
         sys_items = list(systems.items())
         for i in range(0, len(sys_items), 3):
@@ -426,8 +592,13 @@ def render_osce():
                 if i + j < len(sys_items):
                     name, icon = sys_items[i+j]
                     with cols[j]:
-                        st.markdown(f"""<div class="glass" style="text-align: center; background: linear-gradient(135deg, #0ea5e9, #2563eb); margin-bottom: 0px;">
-                            <div style="font-size: 40px;">{icon}</div><h3>{name}</h3></div>""", unsafe_allow_html=True)
+                        st.markdown(f'''
+                            <div class="osce-system-tile">
+                                <div class="osce-system-icon">{icon}</div>
+                                <h3 class="osce-system-name">{name}</h3>
+                                <div class="osce-system-sub">Simulation • Assessment • Feedback</div>
+                            </div>
+                        ''', unsafe_allow_html=True)
                         if st.button(f"Enter {name} System", key=f"btn_{name}", use_container_width=True):
                             st.session_state.selected_system = name
                             st.rerun()
