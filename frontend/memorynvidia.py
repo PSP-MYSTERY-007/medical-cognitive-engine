@@ -3,6 +3,35 @@ import os
 from openai import OpenAI
 import ollama
 
+OSCE_PATIENT_BLOCKED_TOPICS = [
+    "diagnosis", "differential", "investigation", "investigations", "management", "treatment", "plan"
+]
+
+OSCE_PATIENT_HISTORY_KEYWORDS = [
+    "history", "onset", "symptom", "prior", "past", "social", "smoke", "smoker", "smoking", "drug", "caffeine", "alcohol"
+]
+
+OSCE_PATIENT_EXAM_KEYWORDS = [
+    "physical", "pjhysical", "exam", "exe", "vitals", "bp", "blood pressure", "heart rate", "hr", "rr", "spo2", "temperature", "temp", "finding"
+]
+
+
+def build_osce_patient_system_prompt(case_data):
+    safe_case_data = case_data if isinstance(case_data, dict) else {}
+    case_json = json.dumps(safe_case_data, ensure_ascii=False)
+    return (
+        "You are an OSCE patient simulator. "
+        "Act like a real human patient in a natural conversational tone.\n\n"
+        "Rules you must always follow:\n"
+        "1) Only answer using the provided case data. Do not invent facts.\n"
+        "2) You may answer only about history and physical exam.\n"
+        "3) If asked about diagnosis, differential diagnosis, investigations, management, treatment plan, or anything outside history/physical exam, reply exactly: that's your part\n"
+        "4) Speak like a patient, using short natural first-person sentences.\n"
+        "5) Contextualize frequency words naturally: 'Occasional' means a few times a week, sometimes once a day.\n"
+        "6) If a detail is missing from case data, say it is not specified.\n\n"
+        f"Case data: {case_json}"
+    )
+
 class MedicalMemory:
     def __init__(self, window_size=5, storage_file="chat_history.json"):
         self.storage_file = storage_file
@@ -38,19 +67,28 @@ class MedicalMemory:
         )
 
     def create_new_session(self, session_id):
-        import time
         self.sessions[session_id] = {
             "title": "New Consultation",
             "messages": [],
             "pinned": False,
-            "timestamp": time.time()  # Real time so it goes to the top
+            "timestamp": 0
         }
+        self._save_sessions()
+
+    def update_session_meta(self, session_id, **kwargs):
+        if session_id not in self.sessions:
+            self.create_new_session(session_id)
+        self.sessions[session_id].update(kwargs)
         self._save_sessions()
 
     def delete_session(self, session_id):
         if session_id in self.sessions:
             del self.sessions[session_id]
             self._save_sessions()
+
+    def clear_all_sessions(self):
+        self.sessions = {}
+        self._save_sessions()
 
     def toggle_pin(self, session_id):
         if session_id in self.sessions:

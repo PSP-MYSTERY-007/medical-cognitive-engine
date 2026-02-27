@@ -108,8 +108,8 @@ model Disease {
 
 model Case {
   id                 String     @id @default(uuid())
-  diseaseId           String
-  disease             Disease    @relation(fields: [diseaseId], references: [id], onDelete: Cascade)
+  diseaseId          String
+  disease            Disease    @relation(fields: [diseaseId], references: [id], onDelete: Cascade)
   age                Int
   gender             String
   chiefComplaint     String
@@ -118,10 +118,26 @@ model Case {
   structuredCaseData Json
   createdAt          DateTime   @default(now())
 
-  sessions           UserCaseSession[]
+  sessions UserCaseSession[]
 
   @@index([diseaseId])
 }
+
+model MedicalCase {
+  id                String   @id @default(cuid())
+  age               Int
+  gender            String
+  chiefComplaint    String
+  hiddenDiagnosis   String
+  difficulty        String   // e.g., "Beginner", "Intermediate"
+  
+  // Use Json type to store the nested exam, history, and lab data
+  structuredData    Json     
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
 
 model UserCaseSession {
   id              String     @id @default(uuid())

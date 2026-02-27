@@ -13,6 +13,27 @@ function weightedPick(items) {
 }
 
 export async function casesRoutes(fastify) {
+  const listMedicalCasesHandler = async (request) => {
+    const querySchema = z.object({
+      difficulty: z.string().optional()
+    });
+    const { difficulty } = querySchema.parse(request.query ?? {});
+
+    const normalizedDifficulty = (difficulty ?? '').trim().toLowerCase();
+    const where = normalizedDifficulty
+      ? { difficulty: { equals: normalizedDifficulty, mode: 'insensitive' } }
+      : {};
+    const medicalCases = await prisma.medicalCase.findMany({
+      where,
+      orderBy: { createdAt: 'desc' }
+    });
+
+    return { medicalCases };
+  };
+
+  fastify.get('/medical-cases', listMedicalCasesHandler);
+  fastify.get('/cases/medical-cases', listMedicalCasesHandler);
+
   // User-facing: select a case by system + difficulty (weighted by weak areas)
   fastify.post('/cases/select', { preHandler: requireAuth }, async (request, reply) => {
     const bodySchema = z.object({
